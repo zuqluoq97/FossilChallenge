@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+
+    dataBinding{
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId globalConfiguration["androidApplicationId"]
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation globalDependencies.appCompat
+    implementation globalDependencies.recyclerview
+    implementation globalDependencies.cardview
+    implementation globalDependencies.constraintLayout
+    implementation globalDependencies.materialComponents
+
+    implementation globalDependencies.calligraphy
+    implementation globalDependencies.gson
+    implementation globalDependencies.timber
+
+    //Network
+    implementation globalDependencies.fastAndroidNetworking
+
+    // Glide
+    implementation globalDependencies.glide
+    annotationProcessor globalDependencies.glideCompiler
+
+    // RxJava (Reactive Programming)
+    implementation globalDependencies.rxJava
+    implementation globalDependencies.rxAndroid
+
+    // Dagger (Dependency injection)
+    annotationProcessor globalDependencies.daggerCompiler
+    implementation globalDependencies.dagger
+
+    // ViewModel
+    annotationProcessor globalDependencies.lifecycleCompiler
+    implementation globalDependencies.lifecycleExtensions
+
+    // Room DB
+    annotationProcessor globalDependencies.roomCompiler
+    implementation globalDependencies.roomRxjava2
+
+    // Logger
+    implementation globalDependencies.timber
+
+    // AutoValue
+    annotationProcessor globalDependencies.autoValueCompiler
+    implementation globalDependencies.autoValueAnnotations
+    annotationProcessor globalDependencies.autoValueGsonCompiler
+    implementation globalDependencies.autoValueGsonAnnotations
+
+    // Test
+    testImplementation globalTestDependencies.junit
+    testImplementation globalTestDependencies.mockito
+    androidTestImplementation globalTestDependencies.junit
+    androidTestImplementation globalTestDependencies.mockito
+
+}

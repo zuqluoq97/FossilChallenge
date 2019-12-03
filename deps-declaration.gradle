@@ -1,0 +1,70 @@
+ext{
+    // Android
+    androidBuildToolsVersion = '29.0.2'
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 29
+    androidCompileSdkVersion = 29
+    appCompatVersion = '1.0.2'
+
+    materialComponentsVersion = '1.2.0-alpha02'
+    androidxConstraintLayout = '2.0.0-beta3'
+    androidxAppCompat = '1.1.0'
+    androidxRecyclerViewVersion = '1.1.0'
+    androidxCardViewVersion = '1.0.0'
+
+    gsonVersion = '2.8.6'
+    androidxRoomVersion = '2.2.1'
+    dagger2Version = '2.25.2'
+    rxJava2Version = '2.2.15'
+    rxAndroidVersion = '2.1.1'
+    lifeCycleVersion = '2.2.0-alpha05'
+    autoValueVersion = '1.7'
+    autoValueGsonVersion = '0.8.0'
+    calligraphyVersion = '2.2.0'
+    rx2FastAndroidNetworkingVersion = '1.0.2'
+    timberVersion = '4.7.1'
+    glideVersion = '4.10.0'
+
+    // Test libraries
+    junitVersion  = '4.12'
+    mockitoVersion = '3.2.0'
+
+    globalDependencies = [
+            appCompat: "androidx.appcompat:appcompat:${appCompatVersion}",
+
+            daggerCompiler: "com.google.dagger:dagger-compiler:${dagger2Version}",
+            dagger: "com.google.dagger:dagger:${dagger2Version}",
+
+            rxJava: "io.reactivex.rxjava2:rxjava:${rxJava2Version}",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+
+            materialComponents: "com.google.android.material:material:${materialComponentsVersion}",
+            recyclerview: "androidx.recyclerview:recyclerview:${androidxRecyclerViewVersion}",
+            cardview: "androidx.cardview:cardview:${androidxCardViewVersion}",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:${androidxConstraintLayout}",
+
+            roomCompiler: "androidx.room:room-compiler:${androidxRoomVersion}",
+            roomRxjava2: "androidx.room:room-rxjava2:${androidxRoomVersion}",
+
+            autoValueCompiler: "com.google.auto.value:auto-value:${autoValueVersion}",
+            autoValueAnnotations: "com.google.auto.value:auto-value-annotations:${autoValueVersion}",
+            autoValueGsonCompiler: "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
+            autoValueGsonAnnotations: "com.ryanharter.auto.value:auto-value-gson-annotations:${autoValueGsonVersion}",
+
+            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${lifeCycleVersion}",
+            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:${lifeCycleVersion}",
+
+            glide: "com.github.bumptech.glide:glide:${glideVersion}",
+            glideCompiler: "com.github.bumptech.glide:compiler:${glideVersion}",
+            fastAndroidNetworking: "com.amitshekhar.android:rx2-android-networking:${rx2FastAndroidNetworkingVersion}",
+
+            calligraphy: "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
+            gson: "com.google.code.gson:gson:${gsonVersion}",
+            timber: "com.jakewharton.timber:timber:${timberVersion}"
+    ]
+
+    globalTestDependencies = [
+            junit: "junit:junit:${junitVersion}",
+            mockito: "org.mockito:mockito-core:${mockitoVersion}"
+    ]
+}
