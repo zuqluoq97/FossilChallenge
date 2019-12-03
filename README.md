@@ -1,0 +1,1 @@
+Implementation for second technical test of Fossil
