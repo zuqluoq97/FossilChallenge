@@ -12,6 +12,9 @@ import androidx.databinding.ViewDataBinding;
 import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.utils.rx.CommonUtils;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 
@@ -49,6 +52,28 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         mBackPressResponseTime = System.currentTimeMillis();
     }
 
+    @Override
+    public void onFragmentAttached(int res,
+                                   Fragment instance,
+                                   String tag) {
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .disallowAddToBackStack();
+        transaction.replace(res, instance, tag).commit();
+    }
+
+    @Override
+    public void onFragmentDetached(String tag) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        if(fragment != null){
+            fragmentManager.beginTransaction()
+                    .disallowAddToBackStack()
+                    .remove(fragment)
+                    .commitNow();
+        }
+    }
+
     private void performDependencyInjection() {
         AndroidInjection.inject(this);
     }
@@ -64,6 +89,10 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         Intent intent = getIntent();
         finish();
         startActivity(intent);
+    }
+
+    public T getViewDataBinding(){
+        return mViewDataBinding;
     }
 
     public void showMessage(String message){

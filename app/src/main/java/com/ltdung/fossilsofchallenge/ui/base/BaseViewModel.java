@@ -40,6 +40,10 @@ public abstract class BaseViewModel<N> extends ViewModel {
         return mNavigator.get();
     }
 
+    public void setNavigator(N navigator) {
+        this.mNavigator = new WeakReference<>(navigator);
+    }
+
     public DataManager getDataManager() {
         return mDataManager;
     }

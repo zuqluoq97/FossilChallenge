@@ -1,6 +1,6 @@
 package com.ltdung.fossilsofchallenge.di.module;
 
-import com.androidnetworking.gsonparserfactory.GsonParserFactory;
+//import com.androidnetworking.gsonparserfactory.GsonParserFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ltdung.fossilsofchallenge.AutoValueGsonFactory;
@@ -42,11 +42,11 @@ public class AppModule {
         return new GsonBuilder().registerTypeAdapterFactory(AutoValueGsonFactory.create()).create();
     }
 
-    @Provides
-    @Singleton
-    GsonParserFactory provideGsonParserFactory(Gson gson){
-        return new GsonParserFactory(gson);
-    }
+//    @Provides
+//    @Singleton
+//    GsonParserFactory provideGsonParserFactory(Gson gson){
+//        return new GsonParserFactory(gson);
+//    }
 
 
 }

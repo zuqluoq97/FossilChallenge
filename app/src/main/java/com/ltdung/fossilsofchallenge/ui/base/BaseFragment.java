@@ -77,6 +77,10 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         AndroidSupportInjection.inject(this);
     }
 
+    public T getViewDataBinding(){
+        return mViewDataBinding;
+    }
+
     public interface Callback{
         void onFragmentAttached(int res, Fragment instance, String tag);
 

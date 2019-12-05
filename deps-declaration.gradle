@@ -14,10 +14,10 @@ ext{
 
     gsonVersion = '2.8.6'
     androidxRoomVersion = '2.2.1'
-    dagger2Version = '2.25.2'
+    dagger2Version = '2.22.1'
     rxJava2Version = '2.2.15'
     rxAndroidVersion = '2.1.1'
-    lifeCycleVersion = '2.2.0-alpha05'
+    lifeCycleVersion = '2.1.0-alpha03'
     autoValueVersion = '1.7'
     autoValueGsonVersion = '0.8.0'
     calligraphyVersion = '2.2.0'

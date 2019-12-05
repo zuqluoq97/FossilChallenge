@@ -46,5 +46,5 @@ public final class AppLogger {
     public static void e(Throwable throwable, String s, Object... objects) {
         Timber.e(throwable, s, objects);
     }
-    
+
 }
