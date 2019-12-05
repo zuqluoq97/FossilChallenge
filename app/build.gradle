@@ -57,7 +57,9 @@ dependencies {
 
     // Dagger (Dependency injection)
     annotationProcessor globalDependencies.daggerCompiler
+    annotationProcessor globalDependencies.daggerAndroidProcessor
     implementation globalDependencies.dagger
+    implementation globalDependencies.daggerAndroidSupport
 
     // ViewModel
     annotationProcessor globalDependencies.lifecycleCompiler

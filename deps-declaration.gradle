@@ -34,6 +34,8 @@ ext{
 
             daggerCompiler: "com.google.dagger:dagger-compiler:${dagger2Version}",
             dagger: "com.google.dagger:dagger:${dagger2Version}",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${dagger2Version}",
+            daggerAndroidSupport: "com.google.dagger:dagger-android-support:${dagger2Version}",
 
             rxJava: "io.reactivex.rxjava2:rxjava:${rxJava2Version}",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
