@@ -21,9 +21,12 @@ ext{
     autoValueVersion = '1.7'
     autoValueGsonVersion = '0.8.0'
     calligraphyVersion = '2.2.0'
-    rx2FastAndroidNetworkingVersion = '1.0.2'
+//    rx2FastAndroidNetworkingVersion = '1.0.2'
+    retrofitVersion = '2.6.2'
     timberVersion = '4.7.1'
     glideVersion = '4.10.0'
+    okhttp3LoggingInterceptorVersion = '3.9.1'
+    ahBottomNavigatorVersion = '2.3.4'
 
     // Test libraries
     junitVersion  = '4.12'
@@ -58,11 +61,18 @@ ext{
 
             glide: "com.github.bumptech.glide:glide:${glideVersion}",
             glideCompiler: "com.github.bumptech.glide:compiler:${glideVersion}",
-            fastAndroidNetworking: "com.amitshekhar.android:rx2-android-networking:${rx2FastAndroidNetworkingVersion}",
+//            fastAndroidNetworking: "com.amitshekhar.android:rx2-android-networking:${rx2FastAndroidNetworkingVersion}",
 
             calligraphy: "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
             gson: "com.google.code.gson:gson:${gsonVersion}",
-            timber: "com.jakewharton.timber:timber:${timberVersion}"
+            timber: "com.jakewharton.timber:timber:${timberVersion}",
+
+            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverterGson: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapterRxJava2: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            okhttp3LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttp3LoggingInterceptorVersion}",
+
+            ahBottomNavigator: "com.aurelhubert:ahbottomnavigation:${ahBottomNavigatorVersion}"
     ]
 
     globalTestDependencies = [

@@ -40,12 +40,23 @@ dependencies {
     implementation globalDependencies.constraintLayout
     implementation globalDependencies.materialComponents
 
+    // Fonts
     implementation globalDependencies.calligraphy
+
     implementation globalDependencies.gson
+
+    implementation globalDependencies.ahBottomNavigator
+
+    // Logger
     implementation globalDependencies.timber
 
+
     //Network
-    implementation globalDependencies.fastAndroidNetworking
+    //implementation globalDependencies.fastAndroidNetworking
+    implementation globalDependencies.okhttp3LoggingInterceptor
+    implementation globalDependencies.retrofit
+    implementation globalDependencies.retrofitConverterGson
+    implementation globalDependencies.retrofitAdapterRxJava2
 
     // Glide
     implementation globalDependencies.glide
