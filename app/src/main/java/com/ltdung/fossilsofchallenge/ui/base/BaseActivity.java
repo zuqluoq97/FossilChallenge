@@ -1,5 +1,6 @@
 package com.ltdung.fossilsofchallenge.ui.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel>
         extends AppCompatActivity implements BaseFragment.Callback{
@@ -33,6 +34,11 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     public abstract V getViewModel();
 
     private static long mBackPressResponseTime;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

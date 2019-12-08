@@ -12,7 +12,7 @@ public final class AppLogger {
     }
 
     public static void init(){
-
+        Timber.plant(new Timber.DebugTree());
     }
 
     public static void d(String s, Object... objects){

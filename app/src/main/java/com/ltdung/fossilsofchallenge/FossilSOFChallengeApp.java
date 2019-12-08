@@ -6,6 +6,7 @@ import android.app.Application;
 //import com.androidnetworking.AndroidNetworking;
 //import com.androidnetworking.gsonparserfactory.GsonParserFactory;
 import com.ltdung.fossilsofchallenge.di.component.DaggerAppComponent;
+import com.ltdung.fossilsofchallenge.utils.AppLogger;
 
 import javax.inject.Inject;
 
@@ -24,8 +25,8 @@ public class FossilSOFChallengeApp extends Application implements HasActivityInj
     @Inject
     CalligraphyConfig mCalligraphyConfig;
 
-    @Inject
-    OkHttpClient mOkHttpClient;
+//    @Inject
+//    OkHttpClient mOkHttpClient;
 
 //    @Inject
 //    GsonParserFactory mGsonParserFactory;
@@ -39,6 +40,7 @@ public class FossilSOFChallengeApp extends Application implements HasActivityInj
                 .build()
                 .inject(this);
 
+        AppLogger.init();
         if(BuildConfig.DEBUG){
            //AndroidNetworking.enableLogging();
         }

@@ -1,6 +1,5 @@
 package com.ltdung.fossilsofchallenge.ui.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,6 +59,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
+        mViewDataBinding.setLifecycleOwner(this);
         mViewDataBinding.executePendingBindings();
     }
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_size">24sp</dimen>
+    <dimen name="tab_horizontal_spacing">16dp</dimen>
+    <dimen name="tab_vertical_spacing">12dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="tab_height_large">72dp</dimen>
+</resources>

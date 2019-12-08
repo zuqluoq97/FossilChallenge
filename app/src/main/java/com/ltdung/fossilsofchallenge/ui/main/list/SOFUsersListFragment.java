@@ -1,5 +1,6 @@
 package com.ltdung.fossilsofchallenge.ui.main.list;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -21,7 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class SOFUsersListFragment extends BaseFragment<FragmentSofUsersListBinding, SOFUsersListViewModel>
         implements SOFUsersListCallback{
 
-    private static final String TAG = "SOFUsersListFragment";
+    public static final String TAG = "SOFUsersListFragment";
 
     @Inject
     ViewModelProviderFactory mViewModelProviderFactory;
@@ -60,4 +61,5 @@ public class SOFUsersListFragment extends BaseFragment<FragmentSofUsersListBindi
         mFragmentSOFUsersListBinding.setViewModel(mSOFUsersListViewModel);
         mSOFUsersListViewModel.setNavigator(this);
     }
+
 }

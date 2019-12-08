@@ -1,6 +1,8 @@
 package com.ltdung.fossilsofchallenge.ui.base;
 
+import androidx.databinding.Observable;
 import androidx.databinding.ObservableBoolean;
+import androidx.databinding.PropertyChangeRegistry;
 import androidx.lifecycle.ViewModel;
 
 import com.ltdung.fossilsofchallenge.data.DataManager;
@@ -10,7 +12,9 @@ import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseViewModel<N> extends ViewModel {
+public abstract class BaseViewModel<N> extends ViewModel implements Observable {
+
+    private PropertyChangeRegistry mCallbacks;
 
     private WeakReference<N> mNavigator;
 
@@ -24,6 +28,7 @@ public abstract class BaseViewModel<N> extends ViewModel {
 
     public BaseViewModel(DataManager dataManager,
                          SchedulerProvider schedulerProvider){
+        mCallbacks = new PropertyChangeRegistry();
         mDataManager = dataManager;
         mSchedulerProvider = schedulerProvider;
         mCompositeDisposable = new CompositeDisposable();
@@ -34,6 +39,16 @@ public abstract class BaseViewModel<N> extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         mCompositeDisposable.dispose();
+    }
+
+    @Override
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        mCallbacks.remove(callback);
+    }
+
+    @Override
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        mCallbacks.add(callback);
     }
 
     public N getNavigator() {

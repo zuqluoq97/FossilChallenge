@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Toolbar" arent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textAppearance">@style/TextAppearance.Text.Bold</item>
     </style>
 
     <!-- style for font -->
@@ -49,6 +59,5 @@
         <item name="android:scaleType">centerInside</item>
         <item name="android:background">@null</item>
     </style>
-
 
 </resources>

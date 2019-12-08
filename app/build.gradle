@@ -45,7 +45,10 @@ dependencies {
 
     implementation globalDependencies.gson
 
-    implementation globalDependencies.ahBottomNavigator
+    implementation globalDependencies.smartTabLayout
+    implementation globalDependencies.smartTabLayoutUtils
+
+    implementation globalDependencies.persistentCookieJar
 
     // Logger
     implementation globalDependencies.timber
@@ -88,6 +91,7 @@ dependencies {
     implementation globalDependencies.autoValueAnnotations
     annotationProcessor globalDependencies.autoValueGsonCompiler
     implementation globalDependencies.autoValueGsonAnnotations
+    annotationProcessor globalDependencies.autoValueWith
 
     // Test
     testImplementation globalTestDependencies.junit

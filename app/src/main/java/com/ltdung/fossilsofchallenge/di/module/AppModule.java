@@ -1,22 +1,79 @@
 package com.ltdung.fossilsofchallenge.di.module;
 
 //import com.androidnetworking.gsonparserfactory.GsonParserFactory;
+import android.app.Application;
+import android.content.Context;
+
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
 import com.ltdung.fossilsofchallenge.AutoValueGsonFactory;
 import com.ltdung.fossilsofchallenge.R;
+import com.ltdung.fossilsofchallenge.data.AppDataManager;
+import com.ltdung.fossilsofchallenge.data.DataManager;
+import com.ltdung.fossilsofchallenge.data.local.db.AppDbHelper;
+import com.ltdung.fossilsofchallenge.data.local.db.DbHelper;
+import com.ltdung.fossilsofchallenge.data.local.pref.AppPreferencesHelper;
+import com.ltdung.fossilsofchallenge.data.local.pref.PreferencesHelper;
+import com.ltdung.fossilsofchallenge.data.remote.ApiHelper;
+import com.ltdung.fossilsofchallenge.di.NetworkInfo;
+import com.ltdung.fossilsofchallenge.utils.AppConstants;
+import com.ltdung.fossilsofchallenge.utils.rx.AppSchedulerProvider;
+import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
+import java.io.File;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
+import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 @Module
 public class AppModule {
+
+    @Provides
+    @Singleton
+    Context provideContext(Application application){
+        return application;
+    }
+
+    @Provides
+    @Singleton
+    PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper){
+        return appPreferencesHelper;
+    }
+
+    @Provides
+    @Singleton
+    DbHelper provideDbHelper(AppDbHelper appDbHelper){
+        return appDbHelper;
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(AppDataManager appDataManager){
+        return appDataManager;
+    }
+
+    @Provides
+    SchedulerProvider provideSchedulerProvider(){
+        return new AppSchedulerProvider();
+    }
 
     @Provides
     @Singleton
@@ -27,9 +84,50 @@ public class AppModule {
                 .build();
     }
 
+//    @Provides
+//    @Singleton
+//    GsonParserFactory provideGsonParserFactory(Gson gson){
+//        return new GsonParserFactory(gson);
+//    }
+
+    // Network
+
     @Provides
-    OkHttpClient provideOkHttpClient(){
-        return new OkHttpClient().newBuilder()
+    @NetworkInfo
+    String provideBaseUrl(){
+        return AppConstants.BASE_URL;
+    }
+
+    @Provides
+    @Singleton
+    CookieManager provideCookieManager(){
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+        CookieHandler.setDefault(cookieManager);
+        return cookieManager;
+    }
+
+    @Provides
+    @Singleton
+    HttpLoggingInterceptor provideHttpLoggingInterceptor(){
+        return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+    }
+
+    @Provides
+    @Singleton
+    CookieJar provideCookieJar(Context context){
+        return new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+    }
+
+    @Provides
+    @Singleton
+    OkHttpClient provideOkHttpClient(CookieJar cookieJar,
+                                     HttpLoggingInterceptor httpLoggingInterceptor,
+                                     Cache cache){
+        return new OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .cookieJar(cookieJar)
+                .cache(cache)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
@@ -38,16 +136,43 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Gson provideGson(){
-        return new GsonBuilder().registerTypeAdapterFactory(AutoValueGsonFactory.create()).create();
+    Gson provideGson(TypeAdapterFactory typeAdapterFactory){
+        return new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
 
-//    @Provides
-//    @Singleton
-//    GsonParserFactory provideGsonParserFactory(Gson gson){
-//        return new GsonParserFactory(gson);
-//    }
+    @Provides
+    @Singleton
+    Cache provideCache(Context context){
+        final int cacheSize = 5 * 1024 * 1024;
+        File cacheDir = context.getCacheDir();
+        return new Cache(cacheDir, cacheSize);
+    }
 
+    @Provides
+    @Singleton
+    RxJava2CallAdapterFactory provideRxJavaCallAdapterFactory(SchedulerProvider schedulerProvider){
+        return RxJava2CallAdapterFactory.createWithScheduler(schedulerProvider.io());
+    }
+
+    @Provides
+    @Singleton
+    TypeAdapterFactory provideTypeAdapterFactory(){
+        return AutoValueGsonFactory.create();
+    }
+
+    @Provides
+    @Singleton
+    ApiHelper provideApiHeader(OkHttpClient okHttpClient,
+                               @NetworkInfo String baseUrl,
+                               RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
+                               Gson gson){
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
+                .client(okHttpClient)
+                .build().create(ApiHelper.class);
+    }
 
 }
 

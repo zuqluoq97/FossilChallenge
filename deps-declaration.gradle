@@ -20,13 +20,15 @@ ext{
     lifeCycleVersion = '2.1.0-alpha03'
     autoValueVersion = '1.7'
     autoValueGsonVersion = '0.8.0'
+    autoValueWithVersion = '1.1.0-rc1'
     calligraphyVersion = '2.2.0'
 //    rx2FastAndroidNetworkingVersion = '1.0.2'
     retrofitVersion = '2.6.2'
     timberVersion = '4.7.1'
     glideVersion = '4.10.0'
     okhttp3LoggingInterceptorVersion = '3.9.1'
-    ahBottomNavigatorVersion = '2.3.4'
+    smartTabLayoutVersion = '2.0.0@aar'
+    persistentCookieJarVersion = 'v1.0.1'
 
     // Test libraries
     junitVersion  = '4.12'
@@ -55,6 +57,7 @@ ext{
             autoValueAnnotations: "com.google.auto.value:auto-value-annotations:${autoValueVersion}",
             autoValueGsonCompiler: "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
             autoValueGsonAnnotations: "com.ryanharter.auto.value:auto-value-gson-annotations:${autoValueGsonVersion}",
+            autoValueWith: "com.gabrielittner.auto.value:auto-value-with:${autoValueWithVersion}",
 
             lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${lifeCycleVersion}",
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:${lifeCycleVersion}",
@@ -72,7 +75,9 @@ ext{
             retrofitAdapterRxJava2: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             okhttp3LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttp3LoggingInterceptorVersion}",
 
-            ahBottomNavigator: "com.aurelhubert:ahbottomnavigation:${ahBottomNavigatorVersion}"
+            smartTabLayout: "com.ogaclejapan.smarttablayout:library:${smartTabLayoutVersion}",
+            smartTabLayoutUtils: "com.ogaclejapan.smarttablayout:utils-v4:${smartTabLayoutVersion}",
+            persistentCookieJar: "com.github.franmontiel:PersistentCookieJar:${persistentCookieJarVersion}"
     ]
 
     globalTestDependencies = [
