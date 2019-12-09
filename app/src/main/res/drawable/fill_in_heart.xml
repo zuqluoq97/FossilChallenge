@@ -15,10 +15,23 @@
         <animated-vector android:drawable="@drawable/heart">
             <target
                 android:name="heart_group"
-                android:animation="@anim/appear" />
+                android:animation="@animator/appear" />
             <target
                 android:name="heart"
-                android:animation="@anim/gray_to_pink" />
+                android:animation="@animator/gray_to_pink" />
+        </animated-vector>
+    </transition>
+
+    <transition
+        android:fromId="@id/state_on"
+        android:toId="@id/state_off">
+        <animated-vector android:drawable="@drawable/heart">
+            <target
+                android:name="heart_group"
+                android:animation="@animator/appear" />
+            <target
+                android:name="heart"
+                android:animation="@animator/pink_to_gray" />
         </animated-vector>
     </transition>
 </animated-selector>

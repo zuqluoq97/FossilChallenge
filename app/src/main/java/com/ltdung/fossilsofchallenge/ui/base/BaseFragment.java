@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
-
 import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel>
@@ -75,6 +74,14 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
     private void performDependencyInjection(){
         AndroidSupportInjection.inject(this);
+    }
+
+    public void handleError(String error){
+        mActivity.handleError(error);
+    }
+
+    public void showMessage(String message){
+        mActivity.showMessage(message);
     }
 
     public T getViewDataBinding(){

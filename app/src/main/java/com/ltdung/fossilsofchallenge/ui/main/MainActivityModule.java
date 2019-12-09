@@ -48,7 +48,7 @@ public class MainActivityModule {
                     icon.setImageDrawable(res.getDrawable(R.drawable.users));
                     break;
                 case 1:
-                    icon.setImageDrawable(res.getDrawable(R.drawable.gray_heart));
+                    icon.setImageDrawable(res.getDrawable(R.drawable.heart));
                     break;
                 default:
                     throw new IllegalStateException("Invalid position: " + position);

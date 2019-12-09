@@ -1,6 +1,5 @@
 package com.ltdung.fossilsofchallenge.di.module;
 
-//import com.androidnetworking.gsonparserfactory.GsonParserFactory;
 import android.app.Application;
 import android.content.Context;
 
@@ -11,20 +10,25 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
 import com.ltdung.fossilsofchallenge.AutoValueGsonFactory;
+import com.ltdung.fossilsofchallenge.BuildConfig;
 import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.data.AppDataManager;
 import com.ltdung.fossilsofchallenge.data.DataManager;
+import com.ltdung.fossilsofchallenge.data.local.db.AppDatabase;
 import com.ltdung.fossilsofchallenge.data.local.db.AppDbHelper;
 import com.ltdung.fossilsofchallenge.data.local.db.DbHelper;
 import com.ltdung.fossilsofchallenge.data.local.pref.AppPreferencesHelper;
 import com.ltdung.fossilsofchallenge.data.local.pref.PreferencesHelper;
 import com.ltdung.fossilsofchallenge.data.remote.ApiHelper;
+import com.ltdung.fossilsofchallenge.di.DatabaseInfo;
 import com.ltdung.fossilsofchallenge.di.NetworkInfo;
 import com.ltdung.fossilsofchallenge.utils.AppConstants;
+import com.ltdung.fossilsofchallenge.utils.NetworkUtils;
 import com.ltdung.fossilsofchallenge.utils.rx.AppSchedulerProvider;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -32,11 +36,15 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import androidx.room.Room;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.CookieJar;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -84,11 +92,20 @@ public class AppModule {
                 .build();
     }
 
-//    @Provides
-//    @Singleton
-//    GsonParserFactory provideGsonParserFactory(Gson gson){
-//        return new GsonParserFactory(gson);
-//    }
+
+    @Provides
+    @DatabaseInfo
+    String provideDatabaseName(){
+        return AppConstants.DATABASE_NAME;
+    }
+
+    @Provides
+    @Singleton
+    AppDatabase provideAppDatabase(@DatabaseInfo String dbName, Context context) {
+        return Room.databaseBuilder(context, AppDatabase.class, dbName)
+                .fallbackToDestructiveMigration()
+                .build();
+    }
 
     // Network
 
@@ -110,7 +127,9 @@ public class AppModule {
     @Provides
     @Singleton
     HttpLoggingInterceptor provideHttpLoggingInterceptor(){
-        return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        if(BuildConfig.DEBUG) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return httpLoggingInterceptor;
     }
 
     @Provides
@@ -123,9 +142,13 @@ public class AppModule {
     @Singleton
     OkHttpClient provideOkHttpClient(CookieJar cookieJar,
                                      HttpLoggingInterceptor httpLoggingInterceptor,
-                                     Cache cache){
+                                     Cache cache,
+                                     Interceptor offlineInterceptor){
+
+
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(offlineInterceptor)
                 .cookieJar(cookieJar)
                 .cache(cache)
                 .connectTimeout(120, TimeUnit.SECONDS)
@@ -133,6 +156,23 @@ public class AppModule {
                 .writeTimeout(120, TimeUnit.SECONDS)
                 .build();
     }
+
+    @Provides
+    @Singleton
+    Interceptor provideOffLineInterceptor(Context context){
+        return chain -> {
+            Request request = chain.request();
+            if(!NetworkUtils.isNetworkAvailable(context)){
+                int maxStale = 60 * 60 * 24 * 30;
+                request = request.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                        .removeHeader("Pragma")
+                        .build();
+            }
+            return chain.proceed(request);
+        };
+    }
+
 
     @Provides
     @Singleton

@@ -25,12 +25,6 @@ public class FossilSOFChallengeApp extends Application implements HasActivityInj
     @Inject
     CalligraphyConfig mCalligraphyConfig;
 
-//    @Inject
-//    OkHttpClient mOkHttpClient;
-
-//    @Inject
-//    GsonParserFactory mGsonParserFactory;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,14 +34,12 @@ public class FossilSOFChallengeApp extends Application implements HasActivityInj
                 .build()
                 .inject(this);
 
-        AppLogger.init();
+
         if(BuildConfig.DEBUG){
-           //AndroidNetworking.enableLogging();
+            AppLogger.init();
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
-//        AndroidNetworking.initialize(getApplicationContext(), mOkHttpClient);
-//        AndroidNetworking.setParserFactory(mGsonParserFactory);
     }
 
     @Override

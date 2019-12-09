@@ -55,7 +55,6 @@ dependencies {
 
 
     //Network
-    //implementation globalDependencies.fastAndroidNetworking
     implementation globalDependencies.okhttp3LoggingInterceptor
     implementation globalDependencies.retrofit
     implementation globalDependencies.retrofitConverterGson
@@ -85,6 +84,10 @@ dependencies {
 
     // Logger
     implementation globalDependencies.timber
+
+    // Paging
+    implementation globalDependencies.pagingRuntime
+    testImplementation globalDependencies.pagingCommon
 
     // AutoValue
     annotationProcessor globalDependencies.autoValueCompiler

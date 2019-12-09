@@ -5,4 +5,5 @@ package com.ltdung.fossilsofchallenge.utils;
  */
 public class AppConstants {
     public static final String BASE_URL = "https://api.stackexchange.com/";
+    public static final String DATABASE_NAME = "fossil_sof_challenge.db";
 }

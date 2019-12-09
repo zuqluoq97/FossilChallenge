@@ -1,13 +1,12 @@
 package com.ltdung.fossilsofchallenge.data.model;
 
-import android.os.Parcelable;
-
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.ltdung.fossilsofchallenge.data.local.db.BadgeConverter;
+import com.ltdung.fossilsofchallenge.data.local.db.TagsConverter;
 
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
@@ -35,6 +34,7 @@ public abstract class User {
     @SerializedName("reputation")
     public abstract int reputation();
 
+    @Nullable
     @AutoValue.CopyAnnotations
     @SerializedName("website_url")
     @ColumnInfo(name = "website_url")
@@ -45,6 +45,7 @@ public abstract class User {
     @ColumnInfo(name = "image_link")
     public abstract String imageLink();
 
+    @Nullable
     @AutoValue.CopyAnnotations
     @SerializedName("about_me")
     @ColumnInfo(name = "about_me")
@@ -55,8 +56,14 @@ public abstract class User {
     @ColumnInfo(name = "display_name")
     public abstract String displayName();
 
+    @Nullable
     @SerializedName("location")
     public abstract String location();
+
+    @Nullable
+    @AutoValue.CopyAnnotations
+    @TypeConverters(TagsConverter.class)
+    public abstract Tags tags();
 
     @AutoValue.CopyAnnotations
     @ColumnInfo(name = "is_bookmarked")
@@ -70,12 +77,15 @@ public abstract class User {
                               String aboutMe,
                               String displayName,
                               String location,
+                              Tags tags,
                               boolean isBookMarked){
         return new AutoValue_User(id, badge, reputation, websiteUrl,
-                imageLink, aboutMe, displayName, location, isBookMarked);
+                imageLink, aboutMe, displayName, location, tags, isBookMarked);
     }
 
     public abstract User withIsBookMarked(boolean isBookMarked);
+
+    public abstract User withTags(Tags tags);
 
     public static TypeAdapter<User> typeAdapter(Gson gson){
         return new AutoValue_User.GsonTypeAdapter(gson);
