@@ -7,7 +7,7 @@
         <import type="org.apache.commons.text.StringEscapeUtils"/>
         <variable
             name="viewModel"
-            type="com.ltdung.fossilsofchallenge.ui.main.list.paging.UserItemViewModel" />
+            type="com.ltdung.fossilsofchallenge.ui.main.bookmarklist.BookMarkUserItemViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -17,11 +17,11 @@
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="5dp"
         card_view:contentPadding="@dimen/cardview_content_padding">
-        
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            
+
             <ImageView
                 android:id="@+id/avatar"
                 android:layout_width="@dimen/avatar_size"
@@ -91,6 +91,6 @@
                 android:background="@null"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        
+
     </androidx.cardview.widget.CardView>
 </layout>

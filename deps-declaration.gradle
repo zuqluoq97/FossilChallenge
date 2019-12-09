@@ -19,7 +19,7 @@ ext{
     rxAndroidVersion = '2.1.1'
     lifeCycleVersion = '2.1.0-alpha03'
     autoValueVersion = '1.7'
-    autoValueGsonVersion = '0.8.0'
+    autoValueGsonVersion = '1.1.1'
     autoValueWithVersion = '1.1.0-rc1'
     calligraphyVersion = '2.2.0'
     retrofitVersion = '2.6.2'
@@ -29,6 +29,7 @@ ext{
     smartTabLayoutVersion = '2.0.0@aar'
     persistentCookieJarVersion = 'v1.0.1'
     pagingVersion = '1.0.1'
+    commonTextVersion = '1.8'
 
     // Test libraries
     junitVersion  = '4.12'
@@ -57,6 +58,7 @@ ext{
             autoValueAnnotations: "com.google.auto.value:auto-value-annotations:${autoValueVersion}",
             autoValueGsonCompiler: "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
             autoValueGsonAnnotations: "com.ryanharter.auto.value:auto-value-gson-annotations:${autoValueGsonVersion}",
+            autoValueGsonRuntime: "com.ryanharter.auto.value:auto-value-gson-runtime:${autoValueGsonVersion}",
             autoValueWith: "com.gabrielittner.auto.value:auto-value-with:${autoValueWithVersion}",
 
             lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${lifeCycleVersion}",
@@ -79,7 +81,9 @@ ext{
             persistentCookieJar: "com.github.franmontiel:PersistentCookieJar:${persistentCookieJarVersion}",
 
             pagingRuntime: "android.arch.paging:runtime:${pagingVersion}",
-            pagingCommon: "android.arch.paging:common:${pagingVersion}"
+            pagingCommon: "android.arch.paging:common:${pagingVersion}",
+
+            commonText: "org.apache.commons:commons-text:${commonTextVersion}"
     ]
 
     globalTestDependencies = [

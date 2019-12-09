@@ -1,8 +1,9 @@
 package com.ltdung.fossilsofchallenge;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

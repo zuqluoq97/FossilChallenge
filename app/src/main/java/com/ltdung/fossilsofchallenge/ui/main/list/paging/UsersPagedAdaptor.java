@@ -15,6 +15,7 @@ import com.ltdung.fossilsofchallenge.data.model.User;
 import com.ltdung.fossilsofchallenge.databinding.ItemLoadingBinding;
 import com.ltdung.fossilsofchallenge.databinding.ItemNetworkFailureBinding;
 import com.ltdung.fossilsofchallenge.databinding.ItemUserBinding;
+import com.ltdung.fossilsofchallenge.ui.base.BaseActivity;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
 import androidx.annotation.NonNull;
@@ -156,8 +157,8 @@ public class UsersPagedAdaptor extends PagedListAdapter<User, RecyclerView.ViewH
         }
 
         @Override
-        public void onBookmarkButtonClick() {
-
+        public void showMessage(String message) {
+            ((BaseActivity) context).showMessage(message);
         }
     }
 
@@ -183,6 +184,5 @@ public class UsersPagedAdaptor extends PagedListAdapter<User, RecyclerView.ViewH
 
     public interface Callback{
         void onRetryClicked();
-        void onBookMarkClicked();
     }
 }

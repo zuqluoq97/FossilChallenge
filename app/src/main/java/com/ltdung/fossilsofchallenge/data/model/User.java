@@ -4,14 +4,12 @@ import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.ltdung.fossilsofchallenge.data.local.db.TagsConverter;
 
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 /**
  * Created by Dung Luong on 06/12/2019
@@ -26,8 +24,8 @@ public abstract class User {
     @PrimaryKey
     public abstract int id();
 
-    @Embedded
     @AutoValue.CopyAnnotations
+    @Embedded
     @SerializedName("badge_counts")
     public abstract Badge badge();
 
@@ -62,7 +60,7 @@ public abstract class User {
 
     @Nullable
     @AutoValue.CopyAnnotations
-    @TypeConverters(TagsConverter.class)
+    @Embedded
     public abstract Tags tags();
 
     @AutoValue.CopyAnnotations

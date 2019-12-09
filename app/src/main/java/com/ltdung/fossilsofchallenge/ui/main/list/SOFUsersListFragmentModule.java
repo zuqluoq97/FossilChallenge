@@ -1,11 +1,7 @@
 package com.ltdung.fossilsofchallenge.ui.main.list;
 
-import android.widget.LinearLayout;
-
 import com.ltdung.fossilsofchallenge.data.DataManager;
 import com.ltdung.fossilsofchallenge.ui.main.list.paging.UserDiffUtilItemCallback;
-import com.ltdung.fossilsofchallenge.ui.main.list.paging.UsersDataSource;
-import com.ltdung.fossilsofchallenge.ui.main.list.paging.UsersDataSourceFactory;
 import com.ltdung.fossilsofchallenge.ui.main.list.paging.UsersPagedAdaptor;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 

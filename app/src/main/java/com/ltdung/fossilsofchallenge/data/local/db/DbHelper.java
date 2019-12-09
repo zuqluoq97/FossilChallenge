@@ -13,4 +13,8 @@ public interface DbHelper {
     Observable<Boolean> insertBookMarkedUser(User user);
 
     Observable<Boolean> removeBookMarkedUser(User user);
+
+    Observable<Boolean> updateBookMarkedUser(User user);
+
+    Observable<Integer> getBookmarkedStatus(User user);
 }

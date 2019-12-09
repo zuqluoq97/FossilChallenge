@@ -1,7 +1,9 @@
 package com.ltdung.fossilsofchallenge.ui.main.bookmarklist;
 
-import android.widget.LinearLayout;
+import com.ltdung.fossilsofchallenge.data.DataManager;
+import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import dagger.Module;
 import dagger.Provides;
 
@@ -12,8 +14,14 @@ import dagger.Provides;
 public class SOFUsersListBookMarkFragmentModule {
 
     @Provides
-    LinearLayout provideLinearLayout(SOFUsersListBookMarkFragment sofUsersListBookMarkFragment){
-        return new LinearLayout(sofUsersListBookMarkFragment.getActivity());
+    LinearLayoutManager provideLinearLayout(SOFUsersListBookMarkFragment sofUsersListBookMarkFragment){
+        return new LinearLayoutManager(sofUsersListBookMarkFragment.getActivity(),
+                LinearLayoutManager.VERTICAL, false);
+    }
+
+    @Provides
+    BookMarkUsersAdapter provideBookMarkUsersAdapter(DataManager dataManager, SchedulerProvider schedulerProvider){
+        return new BookMarkUsersAdapter(dataManager, schedulerProvider);
     }
 
 }

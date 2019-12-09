@@ -8,13 +8,13 @@ import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.ViewModelProviderFactory;
 import com.ltdung.fossilsofchallenge.databinding.FragmentSofUsersListBookmarkBinding;
 import com.ltdung.fossilsofchallenge.ui.base.BaseFragment;
-import com.ltdung.fossilsofchallenge.ui.main.list.SOFUsersListCallback;
 
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
  * Created by Dung Luong on 05/12/2019
@@ -26,6 +26,12 @@ public class SOFUsersListBookMarkFragment extends BaseFragment<FragmentSofUsersL
 
     @Inject
     ViewModelProviderFactory mViewModelProviderFactory;
+
+    @Inject
+    LinearLayoutManager mLinearLayoutManager;
+
+    @Inject
+    BookMarkUsersAdapter mBookMarkUsersAdapter;
 
     private SOFUsersListBookMarkViewModel sofUsersListBookMarkViewModel;
 
@@ -60,5 +66,34 @@ public class SOFUsersListBookMarkFragment extends BaseFragment<FragmentSofUsersL
         fragmentSofUsersListBookmarkBinding = getViewDataBinding();
         fragmentSofUsersListBookmarkBinding.setViewModel(sofUsersListBookMarkViewModel);
         sofUsersListBookMarkViewModel.setNavigator(this);
+
+        initialAdapter();
+
+        subscribeToLiveData();
+    }
+
+    private void subscribeToLiveData() {
+        sofUsersListBookMarkViewModel.getListBookmarkedUsersLiveData().observe(this,
+                bookmarkedUsers -> {
+                    if(bookmarkedUsers.size() != 0){
+                        fragmentSofUsersListBookmarkBinding.hint.setVisibility(View.GONE);
+                    }else{
+                        fragmentSofUsersListBookmarkBinding.hint.setVisibility(View.VISIBLE);
+                    }
+                    mBookMarkUsersAdapter.setBookmarkedUsers(bookmarkedUsers);
+                });
+    }
+
+    private void initialAdapter() {
+        fragmentSofUsersListBookmarkBinding.bookMarkedUsersRecyclerView.setLayoutManager(mLinearLayoutManager);
+        fragmentSofUsersListBookmarkBinding.bookMarkedUsersRecyclerView.setAdapter(mBookMarkUsersAdapter);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            sofUsersListBookMarkViewModel.getBookmarkedUsers();
+        }
     }
 }

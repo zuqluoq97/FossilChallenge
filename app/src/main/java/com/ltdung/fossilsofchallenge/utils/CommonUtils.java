@@ -1,4 +1,4 @@
-package com.ltdung.fossilsofchallenge.utils.rx;
+package com.ltdung.fossilsofchallenge.utils;
 
 import android.content.Context;
 import android.widget.Toast;

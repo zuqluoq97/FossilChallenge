@@ -2,8 +2,6 @@ package com.ltdung.fossilsofchallenge.ui.main.list.paging;
 
 import com.ltdung.fossilsofchallenge.data.model.User;
 
-import javax.inject.Inject;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.DataSource;
 

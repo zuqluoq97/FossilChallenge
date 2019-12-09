@@ -1,6 +1,5 @@
 package com.ltdung.fossilsofchallenge.ui.main.list;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -113,7 +112,10 @@ public class SOFUsersListFragment extends BaseFragment<FragmentSofUsersListBindi
     }
 
     @Override
-    public void onBookMarkClicked() {
-
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            if(mUsersPagedAdaptor != null) mUsersPagedAdaptor.notifyDataSetChanged();
+        }
     }
 }

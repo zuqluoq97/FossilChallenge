@@ -4,15 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ltdung.fossilsofchallenge.R;
+import com.ltdung.fossilsofchallenge.utils.CommonUtils;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-
-import com.ltdung.fossilsofchallenge.R;
-import com.ltdung.fossilsofchallenge.utils.rx.CommonUtils;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;

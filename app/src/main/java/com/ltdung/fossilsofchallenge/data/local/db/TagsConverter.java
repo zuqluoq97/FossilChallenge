@@ -1,11 +1,13 @@
 package com.ltdung.fossilsofchallenge.data.local.db;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.ltdung.fossilsofchallenge.data.model.Badge;
-import com.ltdung.fossilsofchallenge.data.model.Tags;
+import com.ltdung.fossilsofchallenge.AutoValueGsonFactory;
+import com.ltdung.fossilsofchallenge.data.model.Tag;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import androidx.room.TypeConverter;
 
@@ -15,18 +17,16 @@ import androidx.room.TypeConverter;
 public class TagsConverter {
 
     @TypeConverter
-    public static String fromTags(Tags tags){
-        Gson gson = new Gson();
-        Type type = new TypeToken<Tags>(){}.getType();
+    public String fromTags(List<Tag> tags){
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(AutoValueGsonFactory.create()).create();
+        Type type = new TypeToken<List<Tag>>(){}.getType();
         return gson.toJson(tags, type);
     }
 
     @TypeConverter
-    public Tags toTags(String tagsString){
-        Gson gson = new Gson();
-        Type type = new TypeToken<Tags>(){}.getType();
-        return gson.fromJson(tagsString, type);
+    public List<Tag> toTags(String tagsJson){
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(AutoValueGsonFactory.create()).create();
+        Type type = new TypeToken<List<Tag>>(){}.getType();
+        return gson.fromJson(tagsJson, type);
     }
-
-
 }

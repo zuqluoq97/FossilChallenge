@@ -6,15 +6,9 @@ import com.ltdung.fossilsofchallenge.data.model.User;
 import com.ltdung.fossilsofchallenge.ui.base.BaseViewModel;
 import com.ltdung.fossilsofchallenge.ui.main.list.paging.UsersDataSource;
 import com.ltdung.fossilsofchallenge.ui.main.list.paging.UsersDataSourceFactory;
-import com.ltdung.fossilsofchallenge.utils.AppConstants;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 

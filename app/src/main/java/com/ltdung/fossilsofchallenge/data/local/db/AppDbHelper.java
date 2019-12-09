@@ -39,4 +39,17 @@ public class AppDbHelper implements DbHelper{
             return true;
         });
     }
+
+    @Override
+    public Observable<Boolean> updateBookMarkedUser(User user) {
+        return Observable.fromCallable(() ->{
+            appDatabase.uesrDao().update(user);
+            return true;
+        });
+    }
+
+    @Override
+    public Observable<Integer> getBookmarkedStatus(User user) {
+        return Observable.fromCallable(() -> appDatabase.uesrDao().isBookmarkedUser(user.id()));
+    }
 }

@@ -1,15 +1,14 @@
 package com.ltdung.fossilsofchallenge.ui.base;
 
-import androidx.databinding.Observable;
-import androidx.databinding.ObservableBoolean;
-import androidx.databinding.PropertyChangeRegistry;
-import androidx.lifecycle.ViewModel;
-
 import com.ltdung.fossilsofchallenge.data.DataManager;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
 import java.lang.ref.WeakReference;
 
+import androidx.databinding.Observable;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.PropertyChangeRegistry;
+import androidx.lifecycle.ViewModel;
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseViewModel<N> extends ViewModel implements Observable {
@@ -49,6 +48,10 @@ public abstract class BaseViewModel<N> extends ViewModel implements Observable {
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
         mCallbacks.add(callback);
+    }
+
+    public void notifyPropertyChanged(int fieldId) {
+        mCallbacks.notifyCallbacks(this, fieldId, null);
     }
 
     public N getNavigator() {

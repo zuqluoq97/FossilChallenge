@@ -2,11 +2,13 @@ package com.ltdung.fossilsofchallenge.ui.main;
 
 import android.os.Bundle;
 
+import com.google.android.material.tabs.TabLayout;
 import com.ltdung.fossilsofchallenge.BR;
 import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.ViewModelProviderFactory;
 import com.ltdung.fossilsofchallenge.databinding.ActivityMainBinding;
 import com.ltdung.fossilsofchallenge.ui.base.BaseActivity;
+import com.ltdung.fossilsofchallenge.ui.main.bookmarklist.SOFUsersListBookMarkFragment;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 

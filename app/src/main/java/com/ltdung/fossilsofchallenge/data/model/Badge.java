@@ -5,8 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
-import androidx.room.Entity;
-
 /**
  * Created by Dung Luong on 06/12/2019
  */

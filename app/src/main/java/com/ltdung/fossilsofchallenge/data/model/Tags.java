@@ -4,10 +4,12 @@ import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.ltdung.fossilsofchallenge.data.local.db.TagsConverter;
 
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.room.TypeConverters;
 
 /**
  * Created by Dung Luong on 08/12/2019
@@ -17,6 +19,7 @@ public abstract class Tags {
 
     @Nullable
     @AutoValue.CopyAnnotations
+    @TypeConverters(TagsConverter.class)
     @SerializedName("items")
     public abstract List<Tag> tags();
 

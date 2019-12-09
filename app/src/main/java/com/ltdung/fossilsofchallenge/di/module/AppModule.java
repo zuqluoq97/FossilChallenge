@@ -28,7 +28,6 @@ import com.ltdung.fossilsofchallenge.utils.rx.AppSchedulerProvider;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -44,7 +43,6 @@ import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -91,7 +89,6 @@ public class AppModule {
                 .setFontAttrId(R.attr.fontPath)
                 .build();
     }
-
 
     @Provides
     @DatabaseInfo

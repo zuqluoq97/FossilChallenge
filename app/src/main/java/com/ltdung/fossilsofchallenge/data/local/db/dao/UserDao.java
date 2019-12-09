@@ -9,7 +9,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import io.reactivex.Single;
+import androidx.room.Update;
 
 /**
  * Created by Dung Luong on 09/12/2019
@@ -25,4 +25,10 @@ public interface UserDao {
 
     @Delete
     void remove(User user);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update(User user);
+
+    @Query("SELECT COUNT(*) FROM user WHERE id LIKE :id")
+    int isBookmarkedUser(int id);
 }

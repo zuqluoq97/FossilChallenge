@@ -6,6 +6,7 @@ import com.ltdung.fossilsofchallenge.data.model.Tags;
 import com.ltdung.fossilsofchallenge.data.model.User;
 import com.ltdung.fossilsofchallenge.data.model.Users;
 import com.ltdung.fossilsofchallenge.data.remote.ApiHelper;
+import com.ltdung.fossilsofchallenge.utils.AppLogger;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +20,8 @@ import io.reactivex.Single;
 
 @Singleton
 public class AppDataManager implements DataManager {
+
+    private static final String TAG = "AppDataManager";
 
     private final PreferencesHelper mPreferencesHelper;
 
@@ -50,7 +53,7 @@ public class AppDataManager implements DataManager {
         return mApiHelper.getSOFUsers(page)
                 .flatMap(users ->
                         Observable.fromIterable(users.users())
-                                .concatMap(user -> {
+                                .flatMap(user -> {
                                     AtomicInteger tagDelay = new AtomicInteger();
                                     return Observable.just(
                                             getSOFUserTags(user.id())
@@ -69,11 +72,22 @@ public class AppDataManager implements DataManager {
 
     @Override
     public Observable<Boolean> insertBookMarkedUser(User user) {
+        AppLogger.d(TAG + " - " + user.toString());
         return mDbHelper.insertBookMarkedUser(user);
     }
 
     @Override
     public Observable<Boolean> removeBookMarkedUser(User user) {
         return mDbHelper.removeBookMarkedUser(user);
+    }
+
+    @Override
+    public Observable<Boolean> updateBookMarkedUser(User user) {
+        return mDbHelper.updateBookMarkedUser(user);
+    }
+
+    @Override
+    public Observable<Integer> getBookmarkedStatus(User user) {
+        return mDbHelper.getBookmarkedStatus(user);
     }
 }
