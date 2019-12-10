@@ -17,6 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
@@ -47,46 +48,58 @@
                         android:layout_width="@dimen/avatar_size"
                         android:layout_height="@dimen/avatar_size"
                         android:scaleType="fitXY"
-                        card_view:layout_constraintTop_toTopOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintEnd_toStartOf="@+id/username"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         card_view:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/username"
-                        android:textSize="17sp"
-                        android:textColor="@color/orange"
-                        card_view:layout_constraintStart_toEndOf="@+id/avatar"
-                        card_view:layout_constraintTop_toTopOf="parent"
-                        card_view:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginStart="@dimen/default_margin"
-                        android:layout_marginEnd="@dimen/default_margin"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@{StringEscapeUtils.unescapeHtml4(viewModel.userObservableField.displayName())}"/>
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:text="@{StringEscapeUtils.unescapeHtml4(viewModel.userObservableField.displayName())}"
+                        android:textColor="@color/orange"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toEndOf="@+id/avatar"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
                         android:id="@+id/location"
                         android:textColor="@color/white"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        card_view:layout_constraintTop_toBottomOf="@+id/username"
-                        card_view:layout_constraintStart_toStartOf="@+id/username"
-                        card_view:layout_constraintEnd_toEndOf="@+id/username"
+                        app:layout_constraintTop_toBottomOf="@+id/username"
+                        app:layout_constraintStart_toStartOf="@+id/username"
+                        app:layout_constraintEnd_toEndOf="@+id/username"
                         android:text="@{StringEscapeUtils.unescapeHtml4(viewModel.userObservableField.location())}"/>
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/tags"-->
-<!--                        android:textSize="12sp"-->
-<!--                        android:textAppearance="@style/TextAppearance.Text.Light"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        card_view:layout_constraintTop_toBottomOf="@id/location"-->
-<!--                        card_view:layout_constraintStart_toStartOf="@+id/username"-->
-<!--                        card_view:layout_constraintEnd_toEndOf="@+id/username"-->
-<!--                        card_view:layout_constraintHorizontal_bias="0.0"-->
-<!--                        android:text="@{viewModel.tagsObservable}"-->
-<!--                        />-->
+                    <TextView
+                        android:id="@+id/tags"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        android:textAppearance="@style/TextAppearance.Text.Light"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/location"
+                        app:layout_constraintStart_toStartOf="@+id/username"
+                        app:layout_constraintEnd_toEndOf="@+id/username"
+                        card_view:layout_constraintHorizontal_bias="0.0"
+                        />
+
+                    <TextView
+                        android:id="@+id/web"
+                        android:textSize="12sp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tags"
+                        app:layout_constraintStart_toStartOf="@+id/username"
+                        app:layout_constraintEnd_toEndOf="@+id/username"
+                        android:text="@{viewModel.userObservableField.websiteUrl()}"
+                        android:textColorLink="@color/pink"
+                        android:autoLink="web"
+                        card_view:layout_constraintHorizontal_bias="0.0"
+                        />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

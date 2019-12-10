@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.utils.CommonUtils;
 
 import androidx.annotation.LayoutRes;
