@@ -63,6 +63,10 @@ public class UserItemViewModel extends BaseViewModel {
         }
     }
 
+    public void onItemClick(){
+        listener.onItemClick(user);
+    }
+
     private void removeBookmarkedUser(User user){
         getCompositeDisposable().add(getDataManager()
                 .removeBookMarkedUser(user)
@@ -121,5 +125,6 @@ public class UserItemViewModel extends BaseViewModel {
 
     public interface UserItemClickListener{
         void showMessage(String message);
+        void onItemClick(User user);
     }
 }

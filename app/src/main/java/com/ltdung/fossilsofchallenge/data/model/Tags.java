@@ -1,5 +1,7 @@
 package com.ltdung.fossilsofchallenge.data.model;
 
+import android.os.Parcelable;
+
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -15,7 +17,7 @@ import androidx.room.TypeConverters;
  * Created by Dung Luong on 08/12/2019
  */
 @AutoValue
-public abstract class Tags {
+public abstract class Tags implements Parcelable {
 
     @Nullable
     @AutoValue.CopyAnnotations

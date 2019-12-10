@@ -6,9 +6,12 @@ import com.google.android.material.tabs.TabLayout;
 import com.ltdung.fossilsofchallenge.BR;
 import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.ViewModelProviderFactory;
+import com.ltdung.fossilsofchallenge.data.model.User;
 import com.ltdung.fossilsofchallenge.databinding.ActivityMainBinding;
 import com.ltdung.fossilsofchallenge.ui.base.BaseActivity;
+import com.ltdung.fossilsofchallenge.ui.detail.UserDetailsActivity;
 import com.ltdung.fossilsofchallenge.ui.main.bookmarklist.SOFUsersListBookMarkFragment;
+import com.ltdung.fossilsofchallenge.utils.CommonUtils;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 
@@ -21,6 +24,8 @@ import androidx.viewpager.widget.ViewPager;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+
+import static com.ltdung.fossilsofchallenge.utils.AppConstants.SELECTED_USER;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
         implements MainNavigator, HasSupportFragmentInjector {
@@ -46,6 +51,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private ViewPager mViewPager;
 
     private SmartTabLayout mSmartTabLayout;
+
+    private static long mBackPressResponseTime;
 
     @Override
     public int getBindingVariable() {
@@ -95,4 +102,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         return mFragmentDispatchingAndroidInjector;
     }
 
+    @Override
+    public void moveToUserDetailActivity(User user) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(SELECTED_USER, user);
+        startActivity(UserDetailsActivity.newIntent(this).putExtras(bundle));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mBackPressResponseTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            finish();
+        }else{
+            CommonUtils.showQuickToast(this, getString(R.string.double_to_exit));
+        }
+        mBackPressResponseTime = System.currentTimeMillis();
+    }
 }

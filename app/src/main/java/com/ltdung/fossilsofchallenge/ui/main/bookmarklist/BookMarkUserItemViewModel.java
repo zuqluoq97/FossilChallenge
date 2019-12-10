@@ -55,6 +55,10 @@ public class BookMarkUserItemViewModel extends BaseViewModel {
         removeBookmarkedUser(user);
     }
 
+    public void onItemClick(){
+        listener.onItemClick(user);
+    }
+
     private void removeBookmarkedUser(User user){
         getCompositeDisposable().add(getDataManager()
                 .removeBookMarkedUser(user)
@@ -73,5 +77,6 @@ public class BookMarkUserItemViewModel extends BaseViewModel {
     public interface BookMarkUserItemClickListener{
         void showMessage(String message);
         void removeBookmarkUser(User user);
+        void onItemClick(User user);
     }
 }

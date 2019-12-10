@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 public interface ApiHelper {
 
-    @GET("/2.2/users?pagesize=10&site=stackoverflow&filter=&key=WbnaD2anhC6oamVZckZrLQ((")
+    @GET("/2.2/users?pagesize=10&site=stackoverflow&filter=!9Z(-woBMT&key=WbnaD2anhC6oamVZckZrLQ((")
     Single<Users> getSOFUsers(@Query("page") int page);
 
     @GET("/2.2/users/{userid}/tags?pagesize=3&site=stackoverflow&key=WbnaD2anhC6oamVZckZrLQ((")

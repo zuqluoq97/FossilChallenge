@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <import type="org.apache.commons.text.StringEscapeUtils"/>
+        <import type="android.text.Html"/>
+        <variable
+            name="viewModel"
+            type="com.ltdung.fossilsofchallenge.ui.detail.UserDetailsViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/Toolbar"/>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@id/appBarLayout"
+                android:id="@+id/mainCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:backgroundTint="@color/colorAccent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="@dimen/avatar_size"
+                        android:layout_height="@dimen/avatar_size"
+                        android:scaleType="fitXY"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintEnd_toStartOf="@+id/username"
+                        card_view:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:textSize="17sp"
+                        android:textColor="@color/orange"
+                        card_view:layout_constraintStart_toEndOf="@+id/avatar"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{StringEscapeUtils.unescapeHtml4(viewModel.userObservableField.displayName())}"/>
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:textColor="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        card_view:layout_constraintTop_toBottomOf="@+id/username"
+                        card_view:layout_constraintStart_toStartOf="@+id/username"
+                        card_view:layout_constraintEnd_toEndOf="@+id/username"
+                        android:text="@{StringEscapeUtils.unescapeHtml4(viewModel.userObservableField.location())}"/>
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tags"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textAppearance="@style/TextAppearance.Text.Light"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        card_view:layout_constraintTop_toBottomOf="@id/location"-->
+<!--                        card_view:layout_constraintStart_toStartOf="@+id/username"-->
+<!--                        card_view:layout_constraintEnd_toEndOf="@+id/username"-->
+<!--                        card_view:layout_constraintHorizontal_bias="0.0"-->
+<!--                        android:text="@{viewModel.tagsObservable}"-->
+<!--                        />-->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reputationCard"
+                android:layout_below="@id/mainCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="5dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                card_view:contentPadding="@dimen/cardview_content_padding">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_margin">
+
+                    <TextView
+                        android:id="@+id/reputation"
+                        android:textAppearance="@style/TextAppearance.Text.Bold"
+                        android:textSize="28sp"
+                        android:layout_margin="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.userObservableField.reputation())}"/>
+
+                    <TextView
+                        android:id="@+id/reputationTitle"
+                        app:layout_constraintStart_toEndOf="@id/reputation"
+                        app:layout_constraintTop_toTopOf="@+id/reputation"
+                        app:layout_constraintBottom_toBottomOf="@id/reputation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:text="@string/reputation_title"
+                        android:gravity="center_vertical"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider"
+                        app:layout_constraintTop_toBottomOf="@+id/reputation"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/dividers" />
+
+                    <ImageView
+                        android:id="@+id/goldIcon"
+                        android:layout_margin="@dimen/default_margin"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/gold"
+                        card_view:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/gold"
+                        app:layout_constraintStart_toEndOf="@id/goldIcon"
+                        app:layout_constraintTop_toTopOf="@id/goldIcon"
+                        app:layout_constraintBottom_toBottomOf="@id/goldIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.userObservableField.badge().gold())}"/>
+
+                    <ImageView
+                        android:id="@+id/silverIcon"
+                        android:layout_margin="@dimen/default_margin"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        app:layout_constraintStart_toEndOf="@+id/gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/silver"
+                        card_view:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/silver"
+                        app:layout_constraintStart_toEndOf="@id/silverIcon"
+                        app:layout_constraintTop_toTopOf="@id/silverIcon"
+                        app:layout_constraintBottom_toBottomOf="@id/silverIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.userObservableField.badge().silver())}"/>
+
+                    <ImageView
+                        android:id="@+id/bronzeIcon"
+                        android:layout_margin="@dimen/default_margin"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        app:layout_constraintStart_toEndOf="@+id/silver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bronze"
+                        card_view:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/bronze"
+                        app:layout_constraintStart_toEndOf="@id/bronzeIcon"
+                        app:layout_constraintTop_toTopOf="@id/bronzeIcon"
+                        app:layout_constraintBottom_toBottomOf="@id/bronzeIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.userObservableField.badge().bronze())}"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/aboutCard"
+                android:layout_below="@id/reputationCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="5dp"
+                card_view:contentPadding="@dimen/cardview_content_padding"
+                android:visibility="@{viewModel.userObservableField.aboutMe() == null ? View.GONE : View.VISIBLE}">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/aboutMeTitle"
+                        android:textAppearance="@style/TextAppearance.Text.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:text="@string/about_me_title"
+                        android:gravity="center_vertical"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/dividers" />
+
+                    <TextView
+                        android:id="@+id/aboutMe"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{viewModel.userObservableField.aboutMe() == null ? "" : Html.fromHtml(viewModel.userObservableField.aboutMe())}'
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -53,7 +53,7 @@ public class AppDataManager implements DataManager {
         return mApiHelper.getSOFUsers(page)
                 .flatMap(users ->
                         Observable.fromIterable(users.users())
-                                .flatMap(user -> {
+                                .concatMap(user -> {
                                     AtomicInteger tagDelay = new AtomicInteger();
                                     return Observable.just(
                                             getSOFUserTags(user.id())

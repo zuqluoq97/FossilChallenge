@@ -1,6 +1,7 @@
 package com.ltdung.fossilsofchallenge;
 
 import com.ltdung.fossilsofchallenge.data.DataManager;
+import com.ltdung.fossilsofchallenge.ui.detail.UserDetailsViewModel;
 import com.ltdung.fossilsofchallenge.ui.main.MainViewModel;
 import com.ltdung.fossilsofchallenge.ui.main.bookmarklist.SOFUsersListBookMarkViewModel;
 import com.ltdung.fossilsofchallenge.ui.main.list.SOFUsersListViewModel;
@@ -40,6 +41,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return (T) new SOFUsersListViewModel(mDataManager, mSchedulerProvider);
         }else if(modelClass.isAssignableFrom(SOFUsersListBookMarkViewModel.class)){
             return (T) new SOFUsersListBookMarkViewModel(mDataManager, mSchedulerProvider);
+        }else if(modelClass.isAssignableFrom(UserDetailsViewModel.class)){
+            return (T) new UserDetailsViewModel(mDataManager, mSchedulerProvider);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass);
     }

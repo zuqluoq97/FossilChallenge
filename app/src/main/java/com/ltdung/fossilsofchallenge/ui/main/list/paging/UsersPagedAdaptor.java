@@ -16,6 +16,7 @@ import com.ltdung.fossilsofchallenge.databinding.ItemLoadingBinding;
 import com.ltdung.fossilsofchallenge.databinding.ItemNetworkFailureBinding;
 import com.ltdung.fossilsofchallenge.databinding.ItemUserBinding;
 import com.ltdung.fossilsofchallenge.ui.base.BaseActivity;
+import com.ltdung.fossilsofchallenge.ui.main.MainActivity;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
 import androidx.annotation.NonNull;
@@ -159,6 +160,11 @@ public class UsersPagedAdaptor extends PagedListAdapter<User, RecyclerView.ViewH
         @Override
         public void showMessage(String message) {
             ((BaseActivity) context).showMessage(message);
+        }
+
+        @Override
+        public void onItemClick(User user) {
+            ((MainActivity) context).moveToUserDetailActivity(user);
         }
     }
 

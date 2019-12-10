@@ -69,7 +69,6 @@ public class SOFUsersListFragment extends BaseFragment<FragmentSofUsersListBindi
         mFragmentSOFUsersListBinding.setViewModel(mSOFUsersListViewModel);
         mSOFUsersListViewModel.setNavigator(this);
 
-        mSOFUsersListViewModel.onScreenCreated();
         initialAdapter();
 
         subscribeToLiveData();

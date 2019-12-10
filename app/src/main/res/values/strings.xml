@@ -3,7 +3,10 @@
     <string name="double_to_exit">Press Back again to exit!</string>
 
     <string name="home_title">Home</string>
+    <string name="user_detail_title">User Details</string>
     <string name="retry_title">RETRY</string>
+    <string name="about_me_title">About</string>
+    <string name="reputation_title">Reputation</string>
 
     <string name="tab_user">USERS</string>
     <string name="tab_user_bookmarked">BOOKMARKS</string>

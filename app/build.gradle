@@ -93,9 +93,10 @@ dependencies {
     annotationProcessor globalDependencies.autoValueCompiler
     implementation globalDependencies.autoValueAnnotations
     annotationProcessor globalDependencies.autoValueGsonCompiler
-//    implementation globalDependencies.autoValueGsonAnnotations
     implementation globalDependencies.autoValueGsonRuntime
     annotationProcessor globalDependencies.autoValueWith
+    annotationProcessor globalDependencies.autoValueParcel
+    implementation globalDependencies.autoValueParcelAdapter
 
 
     implementation globalDependencies.commonText

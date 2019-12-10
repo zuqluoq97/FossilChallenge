@@ -3,11 +3,13 @@ package com.ltdung.fossilsofchallenge.ui.base;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.ltdung.fossilsofchallenge.R;
 import com.ltdung.fossilsofchallenge.utils.CommonUtils;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -32,8 +34,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     public abstract V getViewModel();
 
-    private static long mBackPressResponseTime;
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -44,17 +44,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         performDependencyInjection();
         super.onCreate(savedInstanceState);
         performDataBinding();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(mBackPressResponseTime + 2000 > System.currentTimeMillis()){
-            super.onBackPressed();
-            finish();
-        }else{
-            CommonUtils.showQuickToast(this, getString(R.string.double_to_exit));
-        }
-        mBackPressResponseTime = System.currentTimeMillis();
     }
 
     @Override
@@ -77,6 +66,15 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
                     .remove(fragment)
                     .commitNow();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void performDependencyInjection() {

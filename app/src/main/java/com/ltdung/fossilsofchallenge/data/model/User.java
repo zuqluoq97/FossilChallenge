@@ -1,5 +1,7 @@
 package com.ltdung.fossilsofchallenge.data.model;
 
+import android.os.Parcelable;
+
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -17,7 +19,7 @@ import androidx.room.PrimaryKey;
 @AutoValue
 @AutoValue.CopyAnnotations
 @Entity(tableName = "user")
-public abstract class User {
+public abstract class User implements Parcelable {
 
     @AutoValue.CopyAnnotations
     @SerializedName("user_id")

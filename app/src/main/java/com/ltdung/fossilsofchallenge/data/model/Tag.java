@@ -1,5 +1,7 @@
 package com.ltdung.fossilsofchallenge.data.model;
 
+import android.os.Parcelable;
+
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -9,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Dung Luong on 08/12/2019
  */
 @AutoValue
-public abstract class Tag {
+public abstract class Tag implements Parcelable {
 
     @AutoValue.CopyAnnotations
     @SerializedName("count")

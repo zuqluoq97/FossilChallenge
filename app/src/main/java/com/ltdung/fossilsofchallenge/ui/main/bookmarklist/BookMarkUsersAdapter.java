@@ -12,6 +12,7 @@ import com.ltdung.fossilsofchallenge.data.DataManager;
 import com.ltdung.fossilsofchallenge.data.model.User;
 import com.ltdung.fossilsofchallenge.databinding.ItemBookmarkedUserBinding;
 import com.ltdung.fossilsofchallenge.ui.base.BaseActivity;
+import com.ltdung.fossilsofchallenge.ui.main.MainActivity;
 import com.ltdung.fossilsofchallenge.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -100,6 +101,11 @@ public class BookMarkUsersAdapter
         public void removeBookmarkUser(User user) {
             bookmarkedUsers.remove(user);
             notifyDataSetChanged();
+        }
+
+        @Override
+        public void onItemClick(User user) {
+            ((MainActivity)context).moveToUserDetailActivity(user);
         }
     }
 }

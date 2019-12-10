@@ -21,6 +21,7 @@ ext{
     autoValueVersion = '1.7'
     autoValueGsonVersion = '1.1.1'
     autoValueWithVersion = '1.1.0-rc1'
+    autoValueParcelVersion = '0.2.5'
     calligraphyVersion = '2.2.0'
     retrofitVersion = '2.6.2'
     timberVersion = '4.7.1'
@@ -60,6 +61,8 @@ ext{
             autoValueGsonAnnotations: "com.ryanharter.auto.value:auto-value-gson-annotations:${autoValueGsonVersion}",
             autoValueGsonRuntime: "com.ryanharter.auto.value:auto-value-gson-runtime:${autoValueGsonVersion}",
             autoValueWith: "com.gabrielittner.auto.value:auto-value-with:${autoValueWithVersion}",
+            autoValueParcel: "com.ryanharter.auto.value:auto-value-parcel:${autoValueParcelVersion}",
+            autoValueParcelAdapter: "com.ryanharter.auto.value:auto-value-parcel-adapter:${autoValueParcelVersion}",
 
             lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${lifeCycleVersion}",
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:${lifeCycleVersion}",

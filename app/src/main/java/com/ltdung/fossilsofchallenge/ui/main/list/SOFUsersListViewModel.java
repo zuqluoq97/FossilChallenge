@@ -27,6 +27,7 @@ public class SOFUsersListViewModel extends BaseViewModel<SOFUsersListCallback> {
         UsersDataSource usersDataSource = new UsersDataSource(dataManager,
                 schedulerProvider, getCompositeDisposable());
         usersDataSourceFactory = new UsersDataSourceFactory(usersDataSource);
+        onScreenCreated();
     }
 
     public void onScreenCreated(){

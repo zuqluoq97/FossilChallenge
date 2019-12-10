@@ -23,4 +23,6 @@
     <color name="background_dialog">#80CBC4</color>
     <color name="holo_blue">#33b5e5</color>
     <color name="gray">#ccc</color>
+
+    <color name="dividers">#DADADA</color>
 </resources>
