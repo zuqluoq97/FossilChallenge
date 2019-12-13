@@ -22,7 +22,8 @@ ext{
     autoValueGsonVersion = '1.1.1'
     autoValueWithVersion = '1.1.0-rc1'
     autoValueParcelVersion = '0.2.5'
-    calligraphyVersion = '2.2.0'
+    calligraphyVersion = '3.1.1'
+    viewPumpVersion = '2.0.3'
     retrofitVersion = '2.6.2'
     timberVersion = '4.7.1'
     glideVersion = '4.10.0'
@@ -70,7 +71,8 @@ ext{
             glide: "com.github.bumptech.glide:glide:${glideVersion}",
             glideCompiler: "com.github.bumptech.glide:compiler:${glideVersion}",
 
-            calligraphy: "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
+            viewPump: "io.github.inflationx:viewpump:${viewPumpVersion}",
+            calligraphy: "io.github.inflationx:calligraphy3:${calligraphyVersion}",
             gson: "com.google.code.gson:gson:${gsonVersion}",
             timber: "com.jakewharton.timber:timber:${timberVersion}",
 

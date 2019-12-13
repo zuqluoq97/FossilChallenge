@@ -11,7 +11,9 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
 
 //import com.androidnetworking.AndroidNetworking;
 //import com.androidnetworking.gsonparserfactory.GsonParserFactory;
@@ -38,7 +40,9 @@ public class FossilSOFChallengeApp extends Application implements HasActivityInj
             AppLogger.init();
         }
 
-        CalligraphyConfig.initDefault(mCalligraphyConfig);
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(mCalligraphyConfig))
+                .build());
     }
 
     @Override

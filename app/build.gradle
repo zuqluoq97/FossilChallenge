@@ -41,6 +41,7 @@ dependencies {
     implementation globalDependencies.materialComponents
 
     // Fonts
+    implementation globalDependencies.viewPump
     implementation globalDependencies.calligraphy
 
     implementation globalDependencies.gson
